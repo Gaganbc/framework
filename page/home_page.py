@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome
 from selenium.webdriver.support import expected_conditions
@@ -15,7 +13,7 @@ class  HomePage:
 
     def verify_home_page_is_displayed(self,wait: WebDriverWait):
         try:
-            wait.until(expected_conditions.visibility_of_element_located()
+            wait.until(expected_conditions.visibility_of_element_located(self.__logout))
             print('Home Page is displayed')
             return True
         except:

@@ -16,12 +16,15 @@ class LoginPage:
         self.__submit_button=(By.ID,"submit")
 
     def set_username(self,un):
+        print("enter username as",un)
         self.driver.find_element(*self.__username).send_keys(un)
 
     def set_password(self,pw):
+        print("enter password as",pw)
         self.driver.find_element(*self.__password).send_keys(pw)
 
     def click_submit_button(self):
+        print("click the submit button",self.__submit_button)
         self.driver.find_element(*self.__submit_button).click()
 
 driver = Chrome()
