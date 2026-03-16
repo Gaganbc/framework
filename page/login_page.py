@@ -29,7 +29,7 @@ class LoginPage:
         print("click the submit button",self.__submit_button)
         self.driver.find_element(*self.__submit_button).click()
 
-    def verify_error_message(self, wait: WebDriverWait):
+    def verify_error_message_displayed(self, wait: WebDriverWait):
         try:
             wait.until(expected_conditions.visibility_of_element_located(self.__error_message))
             print("error message is displayed")
