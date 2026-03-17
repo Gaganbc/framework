@@ -33,7 +33,7 @@ class LoginPage:
         try:
             wait.until(expected_conditions.visibility_of_element_located(self.__error_message))
             print("error message is displayed")
-            print(self.__error_message.text)
+            print(self.driver.find_element(*self.__error_message).text)
             return True
         except:
             print('error message is not displayed')
