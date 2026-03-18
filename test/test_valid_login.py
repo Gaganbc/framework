@@ -17,8 +17,8 @@ class Test_valid_login(Base_Test):
         login_page.set_password(pw)
         #3. click on submit button
         login_page.click_submit_button()
-        print("Current URL:", self.driver.current_url)
-        print("Page Title:", self.driver.title)
+        time.sleep(3)
+        print("URL after click:", self.driver.current_url)
         #4. verify that home page is displayed
         home_page = HomePage(self.driver)
         result=home_page.verify_home_page_is_displayed(self.wait)

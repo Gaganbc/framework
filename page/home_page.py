@@ -10,7 +10,7 @@ class  HomePage:
     def __init__(self,driver):
         self.driver = driver
         self.__logout=(By.XPATH, "//a[contains(text(),'Log out')]")
-
+    #
     def verify_home_page_is_displayed(self,wait: WebDriverWait):
         try:
             wait.until(expected_conditions.visibility_of_element_located(self.__logout))
