@@ -10,6 +10,7 @@ class Test_InvalidLogin(Base_Test):
         login_page.set_password("123")
         #3. click on submit button
         login_page.click_submit_button()
+        print("Current URL:", self.driver.current_url)
         #4. verify that err message is displayed
         result=login_page.verify_error_message_displayed(self.wait)
         assert result

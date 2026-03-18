@@ -11,8 +11,9 @@ from selenium.webdriver.safari.options import Options as SafariOptions
 
 class Base_Test:
 
-    @pytest.fixture(autouse=True)
-    def precondition(self):
+    @pytest.fixture(autouse=True, params=['Chrome','Safari'])
+    def precondition(self, request):
+        BROWSER=request.param
         # path='config.properties'
         generic=os.path.dirname(__file__)
         path=generic+'/../config.properties'
@@ -20,7 +21,7 @@ class Base_Test:
         print('-----',path,'-----')
         GRID=Utility.get_property(path,'GRID')
         GRIDURL=Utility.get_property(path,'GRIDURL')
-        BROWSER=Utility.get_property(path,'BROWSER')
+        # BROWSER=Utility.get_property(path,'BROWSER')
         APPURL = Utility.get_property(path, 'APPURL')
         ITO = Utility.get_property(path, 'ITO')
         ETO = Utility.get_property(path, 'ETO')
@@ -31,10 +32,12 @@ class Base_Test:
                 print("open the Chrome browser in remote system")
                 Chrome_Options = ChromeOptions()
                 self.driver = Remote(GRIDURL,options=Chrome_Options)
-            else:
+            elif BROWSER == 'Safari':
                 print("open the Safari browser in remote system")
                 Safari_Options = SafariOptions()
                 self.driver = Remote(GRIDURL,options= Safari_Options)
+            else:
+                print("error")
 
 
         else:
@@ -43,9 +46,11 @@ class Base_Test:
         if BROWSER == 'Chrome':
             print("open the Chrome browser in local system")
             self.driver = Chrome()
-        else :
+        elif BROWSER == 'Safari' :
             print("open the Safari browser in local system")
             self.driver = Safari()
+        else:
+            print("error")
 
         print("enter the url", APPURL)
         self.driver.get(APPURL)
